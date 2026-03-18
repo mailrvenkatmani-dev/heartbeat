@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Manasha ❤️</title>
+
+<!-- Premium Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    color: #111;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Screens */
+.screen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: opacity 1s ease-in-out;
+}
+
+/* Hidden */
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Intro */
+#intro {
+    background: black;
+    color: white;
+    font-size: 5em;
+}
+
+/* Headings */
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3em;
+}
+
+h2 {
+    font-weight: 300;
+}
+
+/* Letter */
+#letter {
+    font-size: 1.3em;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+/* Proposal */
+#proposal {
+    font-size: 2.2em;
+}
+
+/* Button */
+button {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1em;
+    cursor: pointer;
+    background: linear-gradient(45deg, #000, #444);
+    color: white;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+/* Hearts */
+.heart {
+    position: fixed;
+    color: #ff2e63;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh); }
+    100% { transform: translateY(-10vh); }
+}
+
+/* Photo styling */
+#couplePhoto {
+    width: 250px;
+    border-radius: 20px;
+    margin-top: 20px;
+    display: none;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+</style>
+</head>
+
+<body>
+
+<!-- ⏳ INTRO -->
+<div id="intro" class="screen">5</div>
+
+<!-- 💕 STORY -->
+<div id="story" class="screen hidden"></div>
+
+<!-- 💖 MAIN -->
+<div id="main" class="screen hidden">
+    <h1>Happy Birthday Manasha (Pattu) ❤️</h1>
+    <h2>From Mama 💕</h2>
+    <p id="letter"></p>
+</div>
+
+<!-- 💍 PROPOSAL -->
+<div id="proposal" class="screen hidden">
+    <div>
+        💖 Manasha 💖<br><br>
+        Will you stay with me forever? 💍<br><br>
+        <button onclick="celebrate()">YES ❤️</button>
+    </div>
+</div>
+
+<!-- 💌 QUOTES + PHOTO -->
+<div id="quotes" class="screen hidden">
+    <div id="quoteText"></div>
+    <img id="couplePhoto" src="Photo.jpg">
+</div>
+
+<!-- 🎶 MUSIC -->
+<audio id="bgMusic" loop>
+    <source src="Song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// ⏳ INTRO COUNTDOWN
+let count = 5;
+let intro = document.getElementById("intro");
+
+let introTimer = setInterval(() => {
+    count--;
+    intro.innerHTML = count;
+
+    if (count === 0) {
+        clearInterval(introTimer);
+        intro.classList.add("hidden");
+        startStory();
+    }
+}, 1000);
+
+
+// 🥹 LOVE STORY
+let storyLines = [
+    "The day I met you... 💫",
+    "My world changed forever ❤️",
+    "Your smile became my happiness 😊",
+    "Your voice became my peace 🎶",
+    "Every moment with you is magic ✨",
+    "And today... it's all about YOU 🎂"
+];
+
+let storyIndex = 0;
+let storyDiv = document.getElementById("story");
+
+function startStory() {
+    storyDiv.classList.remove("hidden");
+    showNextLine();
+}
+
+function showNextLine() {
+    if (storyIndex < storyLines.length) {
+        storyDiv.innerHTML = "<h2>" + storyLines[storyIndex] + "</h2>";
+        storyIndex++;
+        setTimeout(showNextLine, 2500);
+    } else {
+        storyDiv.classList.add("hidden");
+        showMain();
+    }
+}
+
+
+// 💖 MAIN
+function showMain() {
+    document.getElementById("main").classList.remove("hidden");
+    typeLetter();
+}
+
+
+// 💌 LETTER
+let text = "Manasha, you are my heart, my soul, and my forever ❤️ I promise to love you endlessly 💕 - Venkat";
+let i = 0;
+
+function typeLetter() {
+    if (i < text.length) {
+        document.getElementById("letter").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeLetter, 40);
+    } else {
+        setTimeout(showProposal, 2000);
+    }
+}
+
+
+// 💍 PROPOSAL
+function showProposal() {
+    document.getElementById("main").classList.add("hidden");
+    document.getElementById("proposal").classList.remove("hidden");
+}
+
+
+// 🎉 CELEBRATE (FINAL)
+function celebrate() {
+    document.getElementById("proposal").classList.add("hidden");
+
+    let quotesDiv = document.getElementById("quotes");
+    let quoteText = document.getElementById("quoteText");
+    let photo = document.getElementById("couplePhoto");
+    let music = document.getElementById("bgMusic");
+
+    quotesDiv.classList.remove("hidden");
+
+    // 🎶 Start music after click
+    music.play();
+
+    let quotes = [
+        "You just made me the happiest person alive ❤️",
+        "Every moment with you is my favorite memory 💖",
+        "I choose you. Always. Forever. 💍",
+        "With you, my life feels complete 🥹",
+        "This is just the beginning of our forever ✨"
+    ];
+
+    let index = 0;
+
+    function showQuotes() {
+        if (index < quotes.length) {
+            quoteText.innerHTML = "<h2>" + quotes[index] + "</h2>";
+            index++;
+            burstConfetti();
+            setTimeout(showQuotes, 2500);
+        } else {
+            quoteText.innerHTML = "<h1>💖 Forever Starts Now 💖</h1>";
+
+            // 📸 Show photo with fade
+            photo.style.display = "block";
+            photo.style.opacity = 0;
+
+            let opacity = 0;
+            let fade = setInterval(() => {
+                opacity += 0.05;
+                photo.style.opacity = opacity;
+                if (opacity >= 1) clearInterval(fade);
+            }, 50);
+        }
+    }
+
+    showQuotes();
+}
+
+
+// 🎉 CONFETTI
+function burstConfetti() {
+    for (let i = 0; i < 80; i++) {
+        let c = document.createElement("div");
+        c.style.position = "fixed";
+        c.style.width = "10px";
+        c.style.height = "10px";
+        c.style.background = ["#ff4b5c","#fff","#ffd700","#ff69b4"][Math.floor(Math.random()*4)];
+        c.style.top = Math.random()*window.innerHeight + "px";
+        c.style.left = Math.random()*window.innerWidth + "px";
+        c.style.borderRadius = "50%";
+        document.body.appendChild(c);
+
+        setTimeout(() => c.remove(), 2000);
+    }
+}
+
+
+// ❤️ FLOATING HEARTS
+setInterval(() => {
+    let heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = (20 + Math.random()*20) + "px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),6000);
+}, 300);
+
+</script>
+
+</body>
+</html>
